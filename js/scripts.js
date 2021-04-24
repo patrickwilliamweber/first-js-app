@@ -3,7 +3,7 @@ let pokemonRepository = (function() {
     pokemonList = [{ name: "Bulbasaur", height: 7, types: ["grass", "poison"] }, { name: "Oddish", height: 5, types: ["acid", "moonlight"] }, { name: "Charmander", height: 6, types: ["smokescreen", "metal"] }];
     return {
         add: function(pokemon) {
-            pokemon.typeOf === object ? pokemonList.push(pokemon)
+            pokemonList.push(pokemon)
         },
         getAll: function() {
             return pokemonList;
