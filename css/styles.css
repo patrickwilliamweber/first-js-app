@@ -22,8 +22,23 @@ h2 {
     margin-left: 30px;
 }
 
+.list {
+    list-style-type: none;
+}
+
 .button {
-    color: maroon;
-    background-color: mintcream;
-    border-radius: 10%;
+    color: mintcream;
+    background-color: rgba(128, 0, 0, .4);
+    border-radius: 35px;
+    width: 200px;
+    height: 100px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.25em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.button:hover {
+    background-color: rgba(128, 0, 0, .8);
+    transition: background-color 1000ms;
 }
