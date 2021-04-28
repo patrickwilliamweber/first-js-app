@@ -26,8 +26,16 @@ let pokemonRepository = (function() {
 
 
 pokemonRepository.getAll().forEach(function(element) {
-    document.write(`<p class="list"> This pokemon is <strong>${element.name}</strong>, they have a height of <strong>${element.height}</strong>.`);
-    if (element.height > 6) {
-        document.write(" (Whoooaaa this guy's massive!) </p> ")
-    }
+    let list = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = element.name;
+    button.classList.add('button');
+    listItem.appendChild(button);
+    list.appendChild(listItem);
+
+
+
+
+
 })
