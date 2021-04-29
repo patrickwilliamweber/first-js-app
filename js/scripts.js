@@ -17,7 +17,10 @@ let pokemonRepository = (function() {
             button.classList.add('button');
             listItem.appendChild(button);
             list.appendChild(listItem);
-        }
+        },
+        showDetails: function(pokemon) {
+            console.log(pokemon)
+        };
     };
 })();
 
