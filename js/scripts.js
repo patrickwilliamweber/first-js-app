@@ -9,24 +9,25 @@ let pokemonRepository = (function() {
             return pokemonList;
         },
 
-        showDetails: function(pokemon) {
-            console.log(pokemon);
+        showDetails: function(event) {
+            console.log(event.target.innerText);
         },
 
         addListItem: function(pokemon) {
             let list = document.querySelector('.pokemon-list');
             list.classList.add('list');
             let listItem = document.createElement('li');
-            let button = document.createElement('button').addEventListener('click', this.showDetails);
+            let button = document.createElement('button');
             button.innerText = pokemon.name;
             button.classList.add('button');
             listItem.appendChild(button);
             list.appendChild(listItem);
+            button.addEventListener('click', pokemonRepository.showDetails);
+
         },
 
     };
 })();
-
 
 
 
@@ -44,18 +45,11 @@ let pokemonRepository = (function() {
 
 
 pokemonRepository.getAll().forEach(function(element) {
-        let list = document.querySelector('.pokemon-list');
-        list.classList.add('list');
-        let listItem = document.createElement('li');
-        let button = document.createElement('button');
-        button.innerText = element.name;
-        button.classList.add('button');
-        listItem.appendChild(button);
-        list.appendChild(listItem);
+        pokemonRepository.addListItem(element);
     })
     //Below is a test with a pokemon I made up.
-    /*let newPokemon = {
-        name: "Faloo (fuh-LOO)",
-        height: 12
-    }
-    pokemonRepository.addListItem(newPokemon);*/
+    // let newPokemon = {
+    //     name: "Faloo (fuh-LOO)",
+    //     height: 12
+    // }
+    // pokemonRepository.addListItem(newPokemon);
