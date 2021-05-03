@@ -1,6 +1,6 @@
 let pokemonRepository = (function() {
     let pokemonList = [];
-    let apiURL = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+    let apiURL = 'https://pokeapi.co/api/v2/pokemon/';
     pokemonList = [{ name: "Bulbasaur", height: 7, types: ["grass", "poison"] }, { name: "Oddish", height: 5, types: ["acid", "moonlight"] }, { name: "Charmander", height: 6, types: ["smokescreen", "metal"] }];
     return {
         add: function(pokemon) {
@@ -59,29 +59,9 @@ let pokemonRepository = (function() {
 
 
 
-
-
-// for (i = 0; i < pokemonList.length; i++) {
-//     document.write(`<p class="list"> Pokemon number ${i + 1} is <strong>${pokemonList[i].name}</strong>, with a height of <strong>${pokemonList[i].height}</strong>.`);
-//     if (pokemonList[i].height > 6) {
-//         document.write(" (Whoooaaa this guy's massive!) </p> ")
-//     }
-// };
-
-//The next line is a test.
-//pokemonRepository.add({ name: "King-Pokemon", height: 12 });
-
 pokemonRepository.loadList().then(function() {
-            // Now the data is loaded!
-            pokemonRepository.getAll().forEach(function(pokemon) {
-                    pokemonRepository.addListItem(pokemon);
-
-                    // pokemonRepository.getAll().forEach(function(element) {
-                    //         pokemonRepository.addListItem(element);
-                })
-                //Below is a test with a pokemon I made up.
-                // let newPokemon = {
-                //     name: "Faloo (fuh-LOO)",
-                //     height: 12
-                // }
-                // pokemonRepository.addListItem(newPokemon);
+    // Now the data is loaded!
+    pokemonRepository.getAll().forEach(function(pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
+});
