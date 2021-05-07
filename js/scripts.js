@@ -9,11 +9,22 @@ let pokemonRepository = (function() {
         getAll: function() {
             return pokemonList;
         },
-
+        loadDetails: function loadDetails(item) {
+            let url = item.detailsUrl;
+            console.log(item);
+            return fetch(url).then(function(response) {
+                return response.json();
+            }).then(function(details) {
+                item.imageUrl = details.sprites.front_default;
+                item.height = details.height;
+                item.types = details.types;
+            }).catch(function(e) {
+                console.error(e);
+            });
+        },
         showDetails: function(event) {
             console.log(event.target.innerText);
         },
-
         addListItem: function(pokemon) {
             let list = document.querySelector('.pokemon-list');
             list.classList.add('list');
@@ -24,9 +35,25 @@ let pokemonRepository = (function() {
             listItem.appendChild(button);
             list.appendChild(listItem);
             button.addEventListener('click', pokemonRepository.showDetails);
+            button.addEventListener('click', function() {
+                pokemonRepository.loadDetails(pokemon).then(function() {
+                    console.log(pokemon);
+                    let height = document.createElement('p');
+                    // let imageUrl = pokemon.imageUrl;
+                    let image = document.createElement('div');
+                    height.innerText = `Height: ${pokemon.height}`;
+                    image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
+                    image.classList.add('image');
+                    height.classList.add('height');
+                    listItem.appendChild(height);
+                    listItem.appendChild(image);
+
+                });
+            });
         },
         loadList: function loadList() {
-            return fetch(apiUrl).then(function(response) {
+            pokemonList = [];
+            return fetch(apiURL).then(function(response) {
                 return response.json();
             }).then(function(json) {
                 json.results.forEach(function(item) {
@@ -34,25 +61,13 @@ let pokemonRepository = (function() {
                         name: item.name,
                         detailsUrl: item.url
                     };
-                    add(pokemon);
+                    pokemonRepository.add(pokemon);
                 });
             }).catch(function(e) {
                 console.error(e);
             })
         },
-        loadDetails: function loadDetails(item) {
-            let url = item.detailsUrl;
-            return fetch(url).then(function(response) {
-                return response.json();
-            }).then(function(details) {
-                // Now we add the details to the item
-                item.imageUrl = details.sprites.front_default;
-                item.height = details.height;
-                item.types = details.types;
-            }).catch(function(e) {
-                console.error(e);
-            });
-        },
+
 
     }
 })();
@@ -60,8 +75,19 @@ let pokemonRepository = (function() {
 
 
 pokemonRepository.loadList().then(function() {
-    // Now the data is loaded!
     pokemonRepository.getAll().forEach(function(pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
 });
+
+var clickCount = 0;
+
+function clickHandler(event) {
+    clickCount++;
+    if (clickCount == 2) {
+        event.target.removeEventListener("click");
+        document.addEventListener('click', function() {
+            alert("I'm not suppose to appear after the first click, only the second.");
+        });
+    }
+}

@@ -38,7 +38,30 @@ h2 {
     margin-bottom: 20px;
 }
 
+.height {
+    color: black;
+    background-color: rgba(128, 0, 117, 0.4);
+    border-radius: 35px;
+    width: 200px;
+    height: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1.25em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 10px;
+}
+
 .button:hover {
     background-color: rgba(128, 0, 0, .8);
     transition: background-color 1000ms;
+}
+
+.details {
+    color: red;
+}
+
+.image {
+    height: 200px;
+    width: 200px;
 }
