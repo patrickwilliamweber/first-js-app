@@ -47,8 +47,9 @@ let pokemonRepository = (function() {
                     height.classList.add('height');
                     listItem.appendChild(height);
                     listItem.appendChild(image);
-
+                    //all of this is occuring on the click. The creation of these elements is their appearance.
                 });
+                //there's gotta be some kind of second click void or something. Figure that out and submit.
             });
         },
         loadList: function loadList() {
@@ -79,15 +80,3 @@ pokemonRepository.loadList().then(function() {
         pokemonRepository.addListItem(pokemon);
     });
 });
-
-var clickCount = 0;
-
-function clickHandler(event) {
-    clickCount++;
-    if (clickCount == 2) {
-        event.target.removeEventListener("click");
-        document.addEventListener('click', function() {
-            alert("I'm not suppose to appear after the first click, only the second.");
-        });
-    }
-}
