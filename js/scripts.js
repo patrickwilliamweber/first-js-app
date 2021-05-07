@@ -39,7 +39,6 @@ let pokemonRepository = (function() {
                 pokemonRepository.loadDetails(pokemon).then(function() {
                     console.log(pokemon);
                     let height = document.createElement('p');
-                    // let imageUrl = pokemon.imageUrl;
                     let image = document.createElement('div');
                     height.innerText = `Height: ${pokemon.height}`;
                     image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
