@@ -35,41 +35,43 @@ let pokemonRepository = (function() {
             listItem.appendChild(button);
             list.appendChild(listItem);
             button.addEventListener('click', pokemonRepository.showDetails);
-            button.addEventListener('click', function() {
-                pokemonRepository.loadDetails(pokemon).then(function() {
-                    console.log(pokemon);
-                    let height = document.createElement('p');
-                    let image = document.createElement('div');
-                    height.innerText = `Height: ${pokemon.height}`;
-                    image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
-                    image.classList.add('image');
-                    height.classList.add('height');
-                    listItem.appendChild(height);
-                    listItem.appendChild(image);
-                    //all of this is occuring on the click. The creation of these elements is their appearance.
-                });
-                //there's gotta be some kind of second click void or something. Figure that out and submit.
+            button.addEventListener('click', pokemonRepository.modalFlash);
+
+        },
+        modalFlash: function() {
+            pokemonRepository.loadDetails(pokemon).then(function() {
+                console.log(pokemon);
+                let height = document.createElement('p');
+                let image = document.createElement('div');
+                height.innerText = `Height: ${pokemon.height}`;
+                image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
+                image.classList.add('image');
+                height.classList.add('height');
+                listItem.appendChild(height);
+                listItem.appendChild(image);
+
             });
-        },
-        loadList: function loadList() {
-            pokemonList = [];
-            return fetch(apiURL).then(function(response) {
-                return response.json();
-            }).then(function(json) {
-                json.results.forEach(function(item) {
-                    let pokemon = {
-                        name: item.name,
-                        detailsUrl: item.url
-                    };
-                    pokemonRepository.add(pokemon);
-                });
-            }).catch(function(e) {
-                console.error(e);
-            })
-        },
+        });
+},
+loadList: function loadList() {
+    pokemonList = [];
+    return fetch(apiURL).then(function(response) {
+        return response.json();
+    }).then(function(json) {
+        json.results.forEach(function(item) {
+            let pokemon = {
+                name: item.name,
+                detailsUrl: item.url
+            };
+            pokemonRepository.add(pokemon);
+        });
+    }).catch(function(e) {
+        console.error(e);
+    })
+},
 
 
-    }
+}
 })();
 
 
