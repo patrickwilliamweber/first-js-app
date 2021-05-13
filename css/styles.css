@@ -65,3 +65,7 @@ h2 {
     height: 200px;
     width: 200px;
 }
+
+.hidden {
+    display: none !important;
+}
