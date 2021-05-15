@@ -46,10 +46,10 @@ h2 {
     height: 30px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 1.25em;
-    margin-top: 20px;
+    margin-top: -10px;
     margin-bottom: 20px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 .button:hover {
@@ -62,8 +62,8 @@ h2 {
 }
 
 .image {
-    height: 200px;
-    width: 200px;
+    height: 100px;
+    width: 100px;
 }
 
 .hidden {

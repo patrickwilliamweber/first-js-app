@@ -48,6 +48,8 @@ let pokemonRepository = (function() {
                     console.log(pokemon);
                     height.innerText = `Height: ${pokemon.height}`;
                     height.classList.toggle('hidden');
+                    image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
+                    image.classList.toggle('hidden');
                 });
             });
         },
