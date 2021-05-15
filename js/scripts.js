@@ -39,16 +39,19 @@ let pokemonRepository = (function() {
             button.innerText = pokemon.name;
             button.classList.add('button');
             listItem.appendChild(button);
-            button.after(height);
-            button.after(image);
+
             list.appendChild(listItem);
             button.addEventListener('click', pokemonRepository.showDetails);
             button.addEventListener('click', function() {
                 pokemonRepository.loadDetails(pokemon).then(function() {
+                    let modalDiv = button.after("div");
+                    modalDiv.classList.add('modalDiv');
+                    modalDiv.appendChild(height);
+                    modalDiv.appendChild(image);
                     console.log(pokemon);
                     height.innerText = `Height: ${pokemon.height}`;
                     height.classList.toggle('hidden');
-                    image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="fresh lookin pokemon"></div>`;
+                    image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="pokemon image"></div>`;
                     image.classList.toggle('hidden');
                 });
             });
