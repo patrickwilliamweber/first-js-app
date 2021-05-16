@@ -32,27 +32,37 @@ let pokemonRepository = (function() {
             let button = document.createElement('button');
             let height = document.createElement('div');
             height.classList.add('hidden');
-            height.classList.add('height');
+            height.classList.add('modal-feature');
             let image = document.createElement('div');
             image.classList.add('hidden');
             image.classList.add('image');
+            image.classList.add;
             button.innerText = pokemon.name;
             button.classList.add('button');
             listItem.appendChild(button);
-
             list.appendChild(listItem);
+            let modalDiv = document.createElement('div');
+            button.after(modalDiv);
+            modalDiv.classList.add('modalDiv');
+            modalDiv.classList.add('hidden');
+            modalDiv.appendChild(image);
+            let pokemonName = document.createElement('p');
+            pokemonName.classList.add('modal-feature');
+            pokemonName.innerText = `${pokemon.name}`;
+            modalDiv.appendChild(pokemonName);
+            modalDiv.appendChild(height);
+            button.after(modalDiv);
+            let overlay = document.getElementById('overlay');
             button.addEventListener('click', pokemonRepository.showDetails);
             button.addEventListener('click', function() {
                 pokemonRepository.loadDetails(pokemon).then(function() {
-                    let modalDiv = button.after("div");
-                    modalDiv.classList.add('modalDiv');
-                    modalDiv.appendChild(height);
-                    modalDiv.appendChild(image);
-                    console.log(pokemon);
+                    modalDiv.classList.toggle('hidden');
                     height.innerText = `Height: ${pokemon.height}`;
                     height.classList.toggle('hidden');
                     image.innerHTML = `<div><img src="${pokemon.imageUrl}" alt="pokemon image"></div>`;
                     image.classList.toggle('hidden');
+                    overlay.classList.toggle('active');
+
                 });
             });
         },
