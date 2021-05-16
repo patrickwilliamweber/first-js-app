@@ -26,21 +26,28 @@ let pokemonRepository = (function() {
             console.log(event.target.innerText);
         },
         addListItem: function(pokemon) {
+            //fetching the ul from html//
             let list = document.querySelector('.pokemon-list');
+            //adding the class for css purposes//
             list.classList.add('list');
+            //adding list items as 'listItem', they are parents to the buttons, but do not themselves display//
             let listItem = document.createElement('li');
             let button = document.createElement('button');
+            button.innerText = pokemon.name;
+            button.classList.add('button');
+            //appending listItem to list and button to listItem as children//
+            listItem.appendChild(button);
+            list.appendChild(listItem);
+            //creating height as a div and adding classes for hidden and styling//
             let height = document.createElement('div');
             height.classList.add('hidden');
             height.classList.add('modal-feature');
+            //creating image as a div and adding classes for hidden and styling//
             let image = document.createElement('div');
             image.classList.add('hidden');
             image.classList.add('image');
-            image.classList.add;
-            button.innerText = pokemon.name;
-            button.classList.add('button');
-            listItem.appendChild(button);
-            list.appendChild(listItem);
+
+
             let modalDiv = document.createElement('div');
             button.after(modalDiv);
             modalDiv.classList.add('modalDiv');
