@@ -38,6 +38,7 @@ h2 {
     font-size: 1.25em;
     margin-top: 20px;
     margin-bottom: 20px;
+    z-index: 1;
 }
 
 .modal-feature {
@@ -74,6 +75,7 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 .image {
@@ -95,10 +97,15 @@ h2 {
     right: 0;
     background-color: rgba(0, 0, 0, .5);
     pointer-events: none;
+    z-index: 0;
 }
 
 #overlay.active {
     opacity: 1;
     pointer-events: all;
-    z-index: -3;
 }
+
+
+/* .close-button {
+    
+} */
