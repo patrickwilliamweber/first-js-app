@@ -71,6 +71,10 @@ let pokemonRepository = (function() {
                 modalDiv.classList.add('hidden');
                 overlay.classList.remove('active');
             }
+            document.querySelector('body').addEventListener('keydown', function(e) {
+                if (e.keycode === 27)
+                    closeModal();
+            })
             closeButton.addEventListener('click', closeModal);
             overlay.addEventListener('click', closeModal);
             //calling pokemonRepository.showDetails on click,  which console logs the pokemon's name//
